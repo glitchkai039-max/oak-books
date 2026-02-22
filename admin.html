@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Oak Books</title>
+  <meta name="description" content="Admin panel for managing recent books on Oak Books.">
+  <meta name="theme-color" content="#3a5a40">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>
+      <img src="transparent-logo.png" alt="Oak Books logo" class="site-logo">
+    </h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="books.html">Books</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="recent.html">Recent</a>
+      <a href="assistant.html">Assistant</a>
+      <a href="admin.html" class="active">Admin</a>
+    </nav>
+  </header>
+  <div class="site-note">Manage your Recent Books list from here. Changes save in your browser instantly.</div>
+
+  <section id="admin-access" class="admin-access">
+    <h2>Admin Access</h2>
+    <p>Only approved email addresses can open the admin panel.</p>
+    <form id="admin-access-form" class="admin-form">
+      <label for="admin-email">Email</label>
+      <input id="admin-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+      <label for="admin-password">Password</label>
+      <input id="admin-password" name="password" type="password" autocomplete="current-password" required placeholder="Your password">
+      <div class="admin-actions">
+        <button type="submit" class="admin-btn">Verify Email</button>
+        <button type="button" id="admin-google-signin" class="admin-btn google-btn">Sign In with Google</button>
+      </div>
+      <p id="admin-access-feedback" class="admin-access-feedback" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section id="admin-panel" class="admin-panel" hidden>
+    <h2>Recent Books Admin</h2>
+    <p id="admin-session-email" class="admin-session-email"></p>
+    <div class="admin-actions admin-actions-top">
+      <button type="button" id="admin-logout" class="admin-btn ghost">Log Out</button>
+    </div>
+    <form id="admin-book-form" class="admin-form">
+      <input type="hidden" id="book-id">
+      <label for="book-title">Title</label>
+      <input id="book-title" name="title" required maxlength="80" placeholder="Book title">
+
+      <label for="book-image">Image URL</label>
+      <input id="book-image" name="image" placeholder="book-image.jpg or https://...">
+
+      <label for="book-description">Description</label>
+      <textarea id="book-description" name="description" rows="4" maxlength="320" placeholder="Short description"></textarea>
+
+      <label for="book-tag">Category Tag</label>
+      <input id="book-tag" name="tag" maxlength="24" placeholder="Mystery, Fantasy, Sci-Fi...">
+
+      <label for="book-link">Read More Link</label>
+      <input id="book-link" name="link" placeholder="error.html?type=not-ready">
+
+      <div class="admin-actions">
+        <button type="submit" class="admin-btn">Save Book</button>
+        <button type="button" id="admin-cancel" class="admin-btn ghost">Cancel Edit</button>
+      </div>
+    </form>
+
+    <div class="admin-list-wrap">
+      <h3>Current Recent Books</h3>
+      <div id="admin-book-list" class="admin-book-list"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Oak Books</p>
+    <p class="footer-note">Free library project since 2026</p>
+  </footer>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
+
